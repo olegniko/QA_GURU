@@ -2,12 +2,14 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.selector.ByText;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class SubmissionFormTest {
@@ -30,7 +32,7 @@ public class SubmissionFormTest {
 
         $x("//*[@id='userNumber']").setValue("1234567890");
 
-        $x("//*[@id='gender-radio-1']").doubleClick();
+        $(byText("Male")).doubleClick();
 
         $x("//*[@id='dateOfBirthInput']").click();
         $x("//*[@class='react-datepicker__month-select']").selectOptionByValue("7");
@@ -86,22 +88,3 @@ public class SubmissionFormTest {
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
