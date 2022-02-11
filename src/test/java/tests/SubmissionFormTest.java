@@ -1,18 +1,29 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.selector.ByText;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
+import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
 
 public class SubmissionFormTest {
+
+    RegistrationPage registrationPage = new RegistrationPage();
+
+    String firstName = "Aleh";
+    String lastName = "Nikulenka";
+    String userEmail = "email@gmail.com";
+    String userNumber = "1234567890";
+    String gender = "Male";
+    String monthOfBirth = "7";
+    String yearOfBirth = "1985";
+    String dayOfBirth = "012";
+
+
 
     @BeforeAll
     static void beforeAll() {
@@ -25,19 +36,23 @@ public class SubmissionFormTest {
         open("/automation-practice-form");
         $x("//*[@class='main-header']").shouldHave(text("Practice Form"));
 
-        $x("//*[@id='firstName']").setValue("Aleh");
-        $x("//*[@id='lastName']").setValue("Nikulenka");
+        registrationPage
+                 .setFirstName(firstName)
+                 .setLastName(lastName)
+                 .setUserEmail(userEmail)
+                 .setUserNumber(userNumber)
+                 .setGender(gender)
+                 .setBirthDate(dayOfBirth,monthOfBirth,yearOfBirth);
 
-        $x("//*[@id='userEmail']").setValue("email@gmail.com");
 
-        $x("//*[@id='userNumber']").setValue("1234567890");
+        /*
 
-        $(byText("Male")).doubleClick();
+        $(byText("Male")).doubleClick();*/
 
-        $x("//*[@id='dateOfBirthInput']").click();
+       /* $x("//*[@id='dateOfBirthInput']").click();
         $x("//*[@class='react-datepicker__month-select']").selectOptionByValue("7");
         $x("//*[@class='react-datepicker__year-select']").selectOptionByValue("1985");
-        $x("//*[contains(@class,'react-datepicker__day--012')]").click();
+        $x("//*[contains(@class,'react-datepicker__day--012')]").click();*/
 
         $x("//*[@id='subjectsInput']").setValue("English").pressEnter();
 
